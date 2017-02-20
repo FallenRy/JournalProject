@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void setupToolbar(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
     private void setupDrawerItems(){
         itemsForDrawer = new ListItem[NUM_OF_ITEMS];
         itemsForDrawer[0] = new ListItem(R.drawable.logo_small, drawerItemsNames[0]);
@@ -67,19 +73,19 @@ public class MainActivity extends AppCompatActivity {
         if(posIn >= 0 && posIn <= NUM_OF_ITEMS ){
             switch (posIn){
                 case 0:
-                    pageFragement = new HomePage();
+                    pageFragement = new HomePageFragment();
                     break;
                 case 1:
-                    pageFragement = new ListPage();
+                    //pageFragement = new ListPageFragment();
                     break;
                 case 2:
-                    pageFragement = new addEditPage();
+                    //pageFragement = new addEditPageFragment();
                     break;
                 case 3:
-                    pageFragement = new settingsPage();
+                    //pageFragement = new settingsPageFragment();
                     break;
                 default:
-                    pageFragement = new HomePage();
+                    pageFragement = new HomePageFragment();
                     break;
             }
         }else{
@@ -119,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
 
     }
+
 
     public class drawerClickListener implements ListView.OnItemClickListener {
 
