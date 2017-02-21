@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,12 +41,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        Adapter adapter = new Adapter(this, R.layout.list_items,itemsForDrawer);
+        DrawerAdapter adapter = new DrawerAdapter(this, R.layout.list_items,itemsForDrawer);
 
         drawerList.setAdapter(adapter);
         drawerList.setOnItemClickListener(new drawerClickListener());
         drawerLayout.setDrawerListener(drawerToggle);
         setupToggle();
+        //Sets Home as the starting pages
+        selectListItem(0);
 
     }
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupDrawerItems(){
         itemsForDrawer = new ListItem[NUM_OF_ITEMS];
-        itemsForDrawer[0] = new ListItem(R.drawable.logo_small, drawerItemsNames[0]);
+        itemsForDrawer[0] = new ListItem(R.drawable.ic_home, drawerItemsNames[0]);
         itemsForDrawer[1] = new ListItem(R.drawable.ic_doc, drawerItemsNames[1]);
         itemsForDrawer[2] = new ListItem(R.drawable.ic_plus, drawerItemsNames[2]);
         itemsForDrawer[3] = new ListItem(R.drawable.ic_settings, drawerItemsNames[3]);
@@ -76,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
                     pageFragement = new HomePageFragment();
                     break;
                 case 1:
-                    //pageFragement = new ListPageFragment();
+                    pageFragement = new ListPageFragment();
                     break;
                 case 2:
-                    //pageFragement = new addEditPageFragment();
+                    pageFragement = new addEditPageFragment();
                     break;
                 case 3:
                     //pageFragement = new settingsPageFragment();

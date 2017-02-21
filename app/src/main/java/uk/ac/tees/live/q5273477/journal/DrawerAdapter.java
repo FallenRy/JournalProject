@@ -12,7 +12,7 @@ import android.widget.TextView;
 /**
  * Created by Theph on 20/02/2017.
  */
-public class Adapter extends ArrayAdapter<ListItem> {
+public class DrawerAdapter extends ArrayAdapter<ListItem> {
 
 
     Context context;
@@ -20,7 +20,7 @@ public class Adapter extends ArrayAdapter<ListItem> {
     ListItem list[] = null;
 
 
-    public Adapter(Context contextIn, int idIn, ListItem[] listIn){
+    public DrawerAdapter(Context contextIn, int idIn, ListItem[] listIn){
         super(contextIn, idIn, listIn);
         this.context = contextIn;
         this.layoutId = idIn;

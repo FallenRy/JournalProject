@@ -3,4 +3,7 @@
     <string-array name="drawer_items">
         <item>Home</item><item>List</item><item>Add</item><item>Settings</item>
     </string-array>
+    <string-array name="cat_spinner_list">
+        <item>Work</item><item>Personal</item>
+    </string-array>
 </resources>
