@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(drawerToggle);
         setupToggle();
         //Sets Home as the starting pages
-        selectListItem(0);
+        changeFragment(0);
 
     }
 
@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void selectListItem(int posIn){
+    public void changeFragment(int posIn){
 
         Fragment pageFragement = null;
 
-        if(posIn >= 0 && posIn <= NUM_OF_ITEMS ){
+        if(posIn >= 0 && posIn <= 5 ){
             switch (posIn){
                 case 0:
                     pageFragement = new HomePageFragment();
@@ -83,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
                     pageFragement = new addEditPageFragment();
                     break;
                 case 3:
+                    //pageFragement = new settingsPageFragment();
+                    break;
+                case 4:
+                    //pageFragement = new settingsPageFragment();
+                    break;
+                case 5:
                     //pageFragement = new settingsPageFragment();
                     break;
                 default:
@@ -97,16 +103,20 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragManger = getSupportFragmentManager();
             fragManger.beginTransaction().replace(R.id.fragment_frame, pageFragement).commit();
 
-            drawerList.setItemChecked(posIn, true);
-            drawerList.setSelection(posIn);
-            setTitle(drawerItemsNames[posIn]);
-            drawerLayout.closeDrawer(drawerList);
+            updateDrawerPos(posIn);
 
         } else {
             Log.d("MainActivity","Fragment Creation Error");
         }
 
 
+    }
+
+    public void updateDrawerPos(int posIn) {
+        drawerList.setItemChecked(posIn, true);
+        drawerList.setSelection(posIn);
+        setTitle(drawerItemsNames[posIn]);
+        drawerLayout.closeDrawer(drawerList);
     }
 
     void setupToggle(){
@@ -132,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int pos, long idIn){
-                selectListItem(pos);
+                changeFragment(pos);
         }
 
     }
