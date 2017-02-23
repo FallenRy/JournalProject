@@ -15,6 +15,6 @@ public class Entry {
     public int _id;
     public String text;
     public String categoty;
-    public Float date_time;
+    public Long date_time;
 
 }

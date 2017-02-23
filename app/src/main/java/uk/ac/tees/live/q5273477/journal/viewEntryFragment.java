@@ -13,7 +13,7 @@ public class viewEntryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_entry_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_enrty_view, container, false);
 
 
         return view;

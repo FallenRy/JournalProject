@@ -132,7 +132,7 @@ public class EntryCRUD  {
                     entry._id =cursor.getInt(cursor.getColumnIndex(Entry.KEY_ID));
                     entry.text =cursor.getString(cursor.getColumnIndex(Entry.KEY_text));
                     entry.categoty  =cursor.getString(cursor.getColumnIndex(Entry.KEY_cat));
-                    entry.date_time =cursor.getFloat(cursor.getColumnIndex(Entry.KEY_data_time));
+                    entry.date_time =cursor.getLong(cursor.getColumnIndex(Entry.KEY_data_time));
 
                 } while (cursor.moveToNext());
             }

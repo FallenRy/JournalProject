@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Entry.KEY_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + Entry.KEY_text + " TEXT, "
                 + Entry.KEY_cat + " TEXT, "
-                + Entry.KEY_data_time + " REAL )";
+                + Entry.KEY_data_time + " INTEGER )";
 
         db.execSQL(CREATE_TABLE_ENTRY);
     }
