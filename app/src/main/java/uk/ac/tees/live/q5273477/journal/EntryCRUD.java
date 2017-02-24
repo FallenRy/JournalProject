@@ -95,10 +95,12 @@ public class EntryCRUD  {
                 do {
                     HashMap<String, String> entry = new HashMap<>();
                     entry.put("id", cursor.getString(cursor.getColumnIndex(Entry.KEY_ID)));
-                    entry.put("name", cursor.getString(cursor.getColumnIndex(Entry.KEY_text)));
+                    entry.put("text", cursor.getString(cursor.getColumnIndex(Entry.KEY_text)));
                     entryList.add(entry);
+                    System.out.println("In getList if " + entry.get("text") );
 
                 } while (cursor.moveToNext());
+
             }
 
             cursor.close();
@@ -113,6 +115,8 @@ public class EntryCRUD  {
 
     public Entry getEntryByID(int id){
         SQLiteDatabase db;
+
+
 
         try {
             db = dbHelper.getReadableDatabase();
@@ -138,7 +142,11 @@ public class EntryCRUD  {
                     entry.date_time =cursor.getLong(cursor.getColumnIndex(Entry.KEY_data_time));
 
                 } while (cursor.moveToNext());
+                System.out.println("successfully getting info ");
+
             }
+            System.out.println("failed getting info ");
+
 
             cursor.close();
             db.close();
