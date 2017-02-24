@@ -20,6 +20,8 @@ public class EntryCRUD  {
 
     public int insert(Entry entry){
 
+        System.out.println("I am in insert");
+
         SQLiteDatabase db;
         ContentValues values = new ContentValues();
         long entry_id;
@@ -31,6 +33,7 @@ public class EntryCRUD  {
             values.put(Entry.KEY_cat, entry.categoty);
             values.put(Entry.KEY_text, entry.text);
             entry_id = db.insert(Entry.TABLE, null, values);
+            System.out.println(entry.text + " This is entry text");
             db.close();
             return (int) entry_id;
         }catch (SQLException e){

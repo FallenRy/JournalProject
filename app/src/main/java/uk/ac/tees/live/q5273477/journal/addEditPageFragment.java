@@ -41,7 +41,7 @@ public class addEditPageFragment extends Fragment {
         entry = crud.getEntryByID(_entry_Id);
         titleBox.setText(getTitle(entry.text));
         noteBox.setText(getNote(entry.text));
-        catList.setSelection(getCatPos(entry.categoty));
+       catList.setSelection(getCatPos(entry.categoty));
 
 
 
@@ -53,7 +53,7 @@ public class addEditPageFragment extends Fragment {
     public String getTitle(String text){
         String title = "";
 
-        if (!text.equals("") || text != null){
+        if (text != null && !text.equals("")){
 
             int breakText = text.indexOf('#');
 
@@ -68,7 +68,7 @@ public class addEditPageFragment extends Fragment {
     public String getNote(String text){
         String note = "";
 
-        if (!text.equals("") || text != null){
+        if (text != null && !text.equals("")){
 
             int breakText = text.indexOf('#');
 
@@ -102,6 +102,8 @@ public class addEditPageFragment extends Fragment {
                 _entry_Id = entryCRUD.insert(entry);
 
                 Toast.makeText(view.getContext(), "Saved", Toast.LENGTH_SHORT).show();
+
+                ((MainActivity)getActivity()).changeFragment(1);
 
 
 
