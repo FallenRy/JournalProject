@@ -1,7 +1,6 @@
 package uk.ac.tees.live.q5273477.journal;
 
 import android.content.Intent;
-import android.icu.text.UnicodeSet;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -37,7 +36,7 @@ public class addEditPageFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         _entry_Id = intent.getIntExtra("entry_id", 0);
         EntryCRUD crud = new EntryCRUD(view.getContext());
-        Entry entry = new Entry();
+        Entry entry;
         entry = crud.getEntryByID(_entry_Id);
         titleBox.setText(getTitle(entry.text));
         noteBox.setText(getNote(entry.text));
@@ -99,13 +98,18 @@ public class addEditPageFragment extends Fragment {
                 entry.text = titleBox.getText().toString() + "#b#" +noteBox.getText().toString();
                 entry.categoty = catList.getSelectedItem().toString();
                 entry.date_time = System.currentTimeMillis();
-                _entry_Id = entryCRUD.insert(entry);
 
-                Toast.makeText(view.getContext(), "Saved", Toast.LENGTH_SHORT).show();
+
+                if(_entry_Id == 0){
+                    _entry_Id = entryCRUD.insert(entry);
+                    Toast.makeText(view.getContext(), "New entry saved", Toast.LENGTH_SHORT).show();
+                }else{
+                    entryCRUD.update(entry);
+                    Toast.makeText(view.getContext(), "Entry updated", Toast.LENGTH_SHORT).show();
+
+                }
 
                 ((MainActivity)getActivity()).changeFragment(1);
-
-
 
             }
         });

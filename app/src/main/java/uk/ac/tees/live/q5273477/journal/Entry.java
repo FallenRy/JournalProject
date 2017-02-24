@@ -13,6 +13,7 @@ public class Entry {
     public static final String KEY_data_time = "data_time";
 
     public int _id;
+    public String title;
     public String text;
     public String categoty;
     public Long date_time;

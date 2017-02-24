@@ -56,8 +56,6 @@ public class ListPageFragment extends ListFragment {
 
         //}
 
-        System.out.println(entryList.get(0));
-        System.out.println(entryList.get(1));
 
         ListAdapter adapter = new SimpleAdapter( view.getContext() , entryList, R.layout.view_entry, new String[] { "id","text"}, new int[] {R.id.view_entry_id, R.id.view_entry_text});
         setListAdapter(adapter);

@@ -95,7 +95,10 @@ public class EntryCRUD  {
                 do {
                     HashMap<String, String> entry = new HashMap<>();
                     entry.put("id", cursor.getString(cursor.getColumnIndex(Entry.KEY_ID)));
-                    entry.put("text", cursor.getString(cursor.getColumnIndex(Entry.KEY_text)));
+                    String temp =cursor.getString(cursor.getColumnIndex(Entry.KEY_text));
+                    String title = getTitle(temp);
+                    String note = getNoteLimit(temp);
+                    entry.put("text", title.toUpperCase() + " : " + note);
                     entryList.add(entry);
                     System.out.println("In getList if " + entry.get("text") );
 
@@ -137,7 +140,9 @@ public class EntryCRUD  {
             if (cursor.moveToFirst()) {
                 do {
                     entry._id =cursor.getInt(cursor.getColumnIndex(Entry.KEY_ID));
-                    entry.text =cursor.getString(cursor.getColumnIndex(Entry.KEY_text));
+                    String temp =cursor.getString(cursor.getColumnIndex(Entry.KEY_text));
+                    entry.title = getTitle(temp);
+                    entry.text = getNote(temp);
                     entry.categoty  =cursor.getString(cursor.getColumnIndex(Entry.KEY_cat));
                     entry.date_time =cursor.getLong(cursor.getColumnIndex(Entry.KEY_data_time));
 
@@ -159,4 +164,56 @@ public class EntryCRUD  {
     return null;
     }
 
+    private String getTitle(String text){
+        String title = "";
+
+        if (text != null && !text.equals("")){
+
+            int breakText = text.indexOf('#');
+
+            title = text.substring(0,breakText);
+            return title;
+        }
+
+
+        return title;
+    }
+
+    private String getNote(String text) {
+        String note = "";
+
+        if (text != null && !text.equals("")) {
+
+            int breakText = text.indexOf('#');
+
+            note = text.substring(breakText, text.length());
+            return note;
+        }
+        return note;
+
+
+
+    }
+
+    private String getNoteLimit(String text) {
+        String note = "";
+
+        if (text != null && !text.equals("")) {
+
+            int breakText = text.indexOf('#') + 3;
+
+            if(text.length() > 200){
+                note = text.substring(breakText, 200);
+
+            }else{
+                note = text.substring(breakText , text.length());
+            }
+
+            return note;
+        }
+        return note;
+
+
+
+    }
 }
